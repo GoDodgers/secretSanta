@@ -1,33 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Secret Santa</ion-title>
-  </ion-navbar>
+	<ion-navbar color="primary">
+		<ion-title>Secret Santa</ion-title>
+	</ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-<ion-list>
 
-  <ion-item>
-    <ion-label color="primary" floating>Secret Santa 1</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+	<ion-card>
+		<ion-card-header>
+			Total Santas:
+		</ion-card-header>
+		<ion-card-content>
+			{{ totalSantas.length }}
+		</ion-card-content>
+	</ion-card>
+	
+	<br>
 
-  <ion-item>
-    <ion-label color="primary" floating>Secret Santa 2</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+	<button ion-button color="secondary" (click)="addSanta()">
+		<ion-icon name="add"></ion-icon>
+	</button>
 
-  <ion-item>
-    <ion-label color="primary" floating>Secret Santa 3</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+	<button ion-button color="danger" (click)="removeSanta()">
+		<ion-icon name="remove"></ion-icon>
+	</button>
 
-  <ion-item>
-    <ion-label color="primary" floating>Secret Santa 4</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+	<br><br>
 
-  
+	<ion-list *ngIf="totalSantas.length">
+	
+		<ion-item *ngFor="let santa of totalSantas">
+			<ion-label color="primary" clearInput> {{ santa }} </ion-label>
+			<ion-input type="text"></ion-input>
+		</ion-item>
 
-</ion-list>
+	</ion-list>
+
 </ion-content>
