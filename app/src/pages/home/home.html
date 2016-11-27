@@ -18,23 +18,27 @@
 	
 	<br>
 
-	<button ion-button color="secondary" (click)="addSanta()">
-		<ion-icon name="add"></ion-icon>
-	</button>
+	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
-	<button ion-button color="danger" (click)="removeSanta()">
-		<ion-icon name="remove"></ion-icon>
-	</button>
+		<button ion-button color="primary" type="submit">Submit</button>
 
-	<br><br>
+		<button ion-button color="secondary" type="button" (click)="addSanta()">
+			<ion-icon name="add"></ion-icon>
+		</button>
 
-	<ion-list *ngIf="totalSantas.length">
-	
-		<ion-item *ngFor="let santa of totalSantas">
-			<ion-label color="primary" clearInput> {{ santa }} </ion-label>
-			<ion-input type="text"></ion-input>
-		</ion-item>
+		<button ion-button color="danger" type="button" (click)="removeSanta()">
+			<ion-icon name="remove"></ion-icon>
+		</button>
 
-	</ion-list>
+		<br><br>
+
+		<ion-list *ngIf="totalSantas.length">
+			<ion-item *ngFor="let santa of totalSantas">
+				<ion-label color="primary" clearInput> {{ santa }} </ion-label>
+				<ion-input type="text" ngModel name="{{ santa }}"></ion-input>
+			</ion-item>
+		</ion-list>
+
+	</form>
 
 </ion-content>

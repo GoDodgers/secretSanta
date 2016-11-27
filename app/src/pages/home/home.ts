@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgForm } from "@angular/forms";
 
 import { NavController } from 'ionic-angular';
 
@@ -9,8 +10,8 @@ import { NavController } from 'ionic-angular';
 
 export class HomePage {
 
-	numSantas = 4;
-	totalSantas = ['Santa 1', 'Santa 2', 'Santa 3', 'Santa 4'];
+	@Input() totalSantas = ['Santa 1', 'Santa 2', 'Santa 3', 'Santa 4'];
+	santas = {};
 
 	addSanta() {
 		this.totalSantas.push(`Santa ${this.totalSantas.length + 1}`);
@@ -20,6 +21,10 @@ export class HomePage {
 		if (this.totalSantas.length) {
 			this.totalSantas.pop();
 		}
+	}
+
+	onSubmit(form: NgForm) {
+		console.log(form);
 	}
 
 	constructor(public navCtrl: NavController) {
