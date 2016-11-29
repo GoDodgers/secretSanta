@@ -1,26 +1,35 @@
 <ion-header>
 	<ion-navbar color="primary">
-		<ion-title>Secret Santa</ion-title>
+		<ion-title class="home-title">Secret Santa</ion-title>
+		<button class="google-login-button" ion-button color="primary" type="button">
+			<ion-icon name="logo-google"> Login </ion-icon>
+		</button>
 	</ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
 
+	<form #gn="ngForm">
 	<ion-card>
-		<ion-card-header>
-			Total Santas:
-		</ion-card-header>
-		<ion-card-content>
-			{{ totalSantas.length }}
-		</ion-card-content>
-	</ion-card>
 	
+		<ion-list>
+			<ion-item>
+				<ion-label color="primary" floating> Group Name </ion-label>
+				<ion-input type="text" name="groupname" [(ngModel)]="santaGroup" required></ion-input>
+			</ion-item>
+		</ion-list>
+
+		<ion-card-header color="primary">
+			Total Santas : {{ totalSantas.length }}
+		</ion-card-header>
+	</ion-card>
+	</form>
+
 	<br>
 
 	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
-		<button ion-button color="primary" type="submit">Submit</button>
+		<button ion-button color="primary" type="submit" [disabled]="!f.valid || !totalSantas.length || !gn.valid">Submit</button>
 
 		<button ion-button color="secondary" type="button" (click)="addSanta()">
 			<ion-icon name="add"></ion-icon>
@@ -35,7 +44,7 @@
 		<ion-list *ngIf="totalSantas.length">
 			<ion-item *ngFor="let santa of totalSantas">
 				<ion-label color="primary" clearInput> {{ santa }} </ion-label>
-				<ion-input type="text" ngModel name="{{ santa }}"></ion-input>
+				<ion-input type="text" ngModel name="{{ santa }}" required></ion-input>
 			</ion-item>
 		</ion-list>
 
