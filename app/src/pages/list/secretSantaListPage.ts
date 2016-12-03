@@ -18,7 +18,7 @@ export class SecretSantaListPage implements OnInit {
 
 	ngOnInit() {
 		this.httpSanta.getSantas()
-			.subscribe((data: any) => console.log(data));
+			.subscribe((data: Response) => console.log(data));
 	}
 
 }

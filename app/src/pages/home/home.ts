@@ -2,17 +2,19 @@ import { Component, Input } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
 import { SantaHttpService } from '../services/santa.http.service';
+import { GoogleService } from '../services/google.service';
 
 import { NavController } from 'ionic-angular';
 
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
-	providers: [SantaHttpService]
+	providers: [SantaHttpService, GoogleService]
 })
 
 export class HomePage {
 
+	loggedIn: boolean = false;
 	santaGroupName: string;
 	@Input() totalSantas: string[] = ['Santa 1', 'Santa 2', 'Santa 3', 'Santa 4'];
 
@@ -26,8 +28,18 @@ export class HomePage {
 		}	
 	}
 
-	constructor(public navCtrl: NavController, private httpSanta: SantaHttpService) {
+	constructor(public navCtrl: NavController, private httpSanta: SantaHttpService, private google: GoogleService) {
 
+	}
+
+	onLogin() {
+		this.google.login();
+		this.loggedIn = true;
+	}
+
+	onLogout() {
+		this.google.logout();
+		this.loggedIn = false;
 	}
 
 	onSubmit(form: NgForm) {

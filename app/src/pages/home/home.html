@@ -3,8 +3,12 @@
 
 		<ion-title class="home-title">Secret Santa</ion-title>
 	
-		<button class="google-login-button" ion-button color="primary" type="button">
+		<button class="google-login-button" ion-button color="primary" type="button" (click)="onLogin()">
 			<ion-icon name="logo-google"> Login </ion-icon>
+		</button>
+
+		<button *ngIf="loggedIn" class="google-logout-button" ion-button color="danger" type="button" (click)="onLogout()">
+			<ion-icon name="logo-google"> Logout </ion-icon>
 		</button>
 	
 	</ion-navbar>
